@@ -175,7 +175,7 @@ ${formData.message}`;
               <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
                 <Globe size={20} />
               </div>
-              <span className="text-lg font-light">Global Operations</span>
+              <span className="text-lg font-light">Indore, India</span>
             </div>
           </div>
         </motion.div>

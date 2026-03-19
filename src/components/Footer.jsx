@@ -98,7 +98,7 @@ export function Footer() {
               </div>
             </li>
             <li className="flex items-center gap-4 text-slate-500">
-              <MapPin size={18} className="text-accent" /> Global Operations
+              <MapPin size={18} className="text-accent" /> Indore, India
             </li>
           </ul>
         </motion.div>
