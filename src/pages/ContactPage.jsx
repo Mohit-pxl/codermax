@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Check, Send, User, Mail, Building2, MessageSquare, Briefcase, DollarSign, Globe } from 'lucide-react';
+import { ArrowRight, Check, Send, User, Mail, Building2, MessageSquare, Briefcase, DollarSign, Globe, Phone } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 const INTERESTS = [
@@ -141,13 +141,13 @@ ${formData.message}`;
             Build Something Great.
           </h1>
           <p className="text-xl text-slate-400 max-w-lg mb-12 font-light leading-relaxed">
-            Send us a message, and we'll promptly discuss your project needs with our expert technical team.
+            Send us a message, and we'll promptly discuss your requirements with our expert technical team.
           </p>
 
           <div className="grid grid-cols-2 gap-8 mb-12">
             <div>
               <div className="text-4xl font-black text-white mb-2">150+</div>
-              <div className="text-accent uppercase tracking-widest text-[10px] font-bold">Projects Delivered</div>
+              <div className="text-accent uppercase tracking-widest text-[10px] font-bold">Successful Deployments</div>
             </div>
             <div>
               <div className="text-4xl font-black text-white mb-2">99.9%</div>
@@ -160,7 +160,16 @@ ${formData.message}`;
               <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
                 <Mail size={20} />
               </div>
-              <span className="text-lg font-light">hello@codermax.tech</span>
+              <span className="text-lg font-light break-all">codermaxtechnologies@gmail.com</span>
+            </div>
+            <div className="flex items-start gap-4 text-slate-400">
+              <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent shrink-0">
+                <Phone size={20} />
+              </div>
+              <div className="text-lg font-light flex flex-col">
+                <span>+91 8982269890</span>
+                <span>+91 7509108861</span>
+              </div>
             </div>
             <div className="flex items-center gap-4 text-slate-400">
               <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
@@ -295,7 +304,7 @@ ${formData.message}`;
                 <div className="relative">
                   <MessageSquare className="absolute left-6 top-6 text-slate-500" size={18} />
                   <textarea
-                    placeholder="Tell us about your project..."
+                    placeholder="Tell us about your requirements..."
                     rows={4}
                     value={formData.message}
                     onChange={(e) => handleSelect('message', e.target.value)}
@@ -333,7 +342,7 @@ ${formData.message}`;
                 </div>
                 <h2 className="text-4xl font-black text-white mb-6 tracking-tight">Message Received!</h2>
                 <p className="text-slate-400 text-lg font-light leading-relaxed max-w-sm">
-                  Thank you for reaching out. Our team will review your project details and get back to you within 24 hours.
+                  Thank you for reaching out. Our team will review your details and get back to you within 24 hours.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}

@@ -28,14 +28,25 @@ export function Footer() {
             <span className="text-xl font-black tracking-tighter">CODERMAX</span>
           </div>
           <p className="text-slate-500 font-light leading-relaxed mb-10">
-            Global HQ: Tech District, Silicon Valley <br />
-            Strategic technical partnership for the modern enterprise.
+            Strategic technical partnership for the modern enterprise. <br />
+            Global reach. Local expertise.
           </p>
           <div className="flex gap-6">
-            {[Linkedin, Github, Twitter].map((Icon, i) => (
-              <motion.div key={i} whileHover={{ y: -5, color: '#22D3EE' }} className="text-slate-600 cursor-pointer transition-colors">
+            {[
+              { Icon: Linkedin, href: "https://www.linkedin.com/company/codermax-technologies/" },
+              { Icon: Github, href: "#" },
+              { Icon: Twitter, href: "#" }
+            ].map(({ Icon, href }, i) => (
+              <motion.a 
+                key={i} 
+                href={href}
+                target={href !== "#" ? "_blank" : "_self"}
+                rel={href !== "#" ? "noopener noreferrer" : ""}
+                whileHover={{ y: -5, color: '#22D3EE' }} 
+                className="text-slate-600 block cursor-pointer transition-colors"
+              >
                 <Icon size={22} />
-              </motion.div>
+              </motion.a>
             ))}
           </div>
         </motion.div>
@@ -62,7 +73,7 @@ export function Footer() {
         >
           <h4 className="font-bold text-lg mb-8 uppercase tracking-widest text-slate-300">Company</h4>
           <ul className="space-y-4 text-slate-500 font-light">
-            {['About Codermax', 'Case Studies', 'Career', 'Newsroom'].map(l => (
+            {['About Codermax', 'Methodologies', 'Career', 'Newsroom'].map(l => (
               <li key={l} className="hover:text-accent cursor-pointer transition-colors">{l}</li>
             ))}
           </ul>
@@ -77,10 +88,14 @@ export function Footer() {
           <h4 className="font-bold text-lg mb-8 uppercase tracking-widest text-slate-300">Get in Touch</h4>
           <ul className="space-y-6">
             <li className="flex items-center gap-4 text-slate-500">
-              <Mail size={18} className="text-accent" /> hello@codermax.tech
+              <Mail size={18} className="text-accent min-w-[18px]" /> <span className="break-all">codermaxtechnologies@gmail.com</span>
             </li>
-            <li className="flex items-center gap-4 text-slate-500">
-              <Phone size={18} className="text-accent" /> +1 (800) COD-ERMAX
+            <li className="flex items-start gap-4 text-slate-500">
+              <Phone size={18} className="text-accent mt-1 min-w-[18px]" /> 
+              <div className="flex flex-col gap-1">
+                <span>+91 8982269890</span>
+                <span>+91 7509108861</span>
+              </div>
             </li>
             <li className="flex items-center gap-4 text-slate-500">
               <MapPin size={18} className="text-accent" /> Global Operations
