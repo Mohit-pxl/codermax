@@ -14,6 +14,61 @@ const HERO_TITLES = [
   "Your Vision, Our Engineering."
 ];
 
+const FlipCard = ({ industry, index }) => {
+  const [isFlipped, React_useState] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ delay: index * 0.1 }}
+      className="relative h-[400px] w-full"
+      style={{ perspective: "1000px" }}
+    >
+      <motion.div
+        className="w-full h-full relative preserve-3d cursor-pointer"
+        animate={{ rotateY: isFlipped ? 180 : 0 }}
+        transition={{ duration: 0.6, type: "spring", stiffness: 260, damping: 20 }}
+        onClick={() => React_useState(!isFlipped)}
+        style={{ transformStyle: "preserve-3d" }}
+      >
+        {/* Front of Card */}
+        <div 
+          className="absolute inset-0 backface-hidden rounded-[2.5rem] overflow-hidden border border-white/5 group"
+          style={{ backfaceVisibility: "hidden" }}
+        >
+          <img src={industry.img} alt={industry.title} className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 opacity-30 group-hover:opacity-60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent" />
+          <div className="absolute inset-0 p-8 flex flex-col justify-end">
+            <div className="w-12 h-12 bg-accent rounded-xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform">
+              <industry.icon size={20} />
+            </div>
+            <h3 className="text-2xl font-black text-white tracking-tighter">{industry.title}</h3>
+            <div className="mt-4 flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all">
+              LEARN MORE <ArrowRight size={14} />
+            </div>
+          </div>
+        </div>
+
+        {/* Back of Card */}
+        <div 
+          className="absolute inset-0 backface-hidden p-8 bg-accent/10 border border-accent/20 rounded-[2.5rem] flex flex-col items-center justify-center text-center w-full h-full"
+          style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+        >
+          <div className="w-16 h-16 bg-[#020617] rounded-2xl flex items-center justify-center text-accent mb-6 shadow-xl shadow-accent/20">
+            <industry.icon size={32} />
+          </div>
+          <h3 className="text-3xl font-black text-white mb-4 tracking-tighter">{industry.title}</h3>
+          <p className="text-slate-300 text-sm font-light leading-relaxed mb-6 px-4">Engineered to drive transformation in the {industry.title} sector.</p>
+          <button className="text-white bg-accent/20 hover:bg-accent hover:text-[#020617] px-6 py-3 border border-transparent hover:border-accent/50 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">
+            Go Back
+          </button>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
 function HeroContent() {
   const { scrollY } = useScroll();
   const yParallax = useTransform(scrollY, [0, 800], [0, 200]);
@@ -92,7 +147,7 @@ function HeroContent() {
           </p>
           <div className="flex flex-col sm:flex-row items-start gap-5">
             <Link to="/contact" className="btn-primary px-10 py-5 text-lg flex items-center gap-3 group shadow-2xl decoration-none">
-              Start Your Project <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              Start Now <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link to="/services" className="btn-secondary px-10 py-5 text-lg backdrop-blur-md decoration-none">
               Explore Services
@@ -106,18 +161,18 @@ function HeroContent() {
   );
 }
 
-const FEATURED_PROJECTS = [
+const STRATEGIC_APPROACH = [
   {
-    title: "Supply Chain Transformation",
-    category: "Logistics",
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200",
-    desc: "Optimizing global asset tracking with AI-driven predictive logistics."
+    title: "Agile Development",
+    category: "Methodology",
+    icon: Zap,
+    desc: "Rapid, iterative development cycles that ensure your product evolves with market demands and user feedback."
   },
   {
-    title: "Next-Gen Fintech Core",
-    category: "Finance",
-    image: "https://images.unsplash.com/photo-1551288049-bbbda5366991?auto=format&fit=crop&q=80&w=1200",
-    desc: "Securing decentralized transactions with zero-trust architecture."
+    title: "Technical Excellence",
+    category: "Quality",
+    icon: Shield,
+    desc: "Clean, maintainable codebases built with the latest industry standards and rigorous security protocols."
   }
 ];
 
@@ -128,18 +183,18 @@ const INDUSTRIES = [
   { title: "Manufacturing", img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=60&w=800", icon: Cpu },
 ];
 
-const TESTIMONIALS = [
+const VALUE_PROPOSITIONS = [
   {
-    name: "Alex Rivera",
-    role: "CTO, Nexus Dynamics",
-    content: "Codermax transformed our legacy system into a high-speed machine. Their technical depth is unparalleled.",
-    avatar: "https://i.pravatar.cc/150?u=alex"
+    name: "Strategic Partnership",
+    role: "Our Commitment",
+    content: "We don't just build software; we become your technical partners, aligning our engineering with your business goals.",
+    initials: "SP"
   },
   {
-    name: "Sarah Chen",
-    role: "Product Head, GlobaTrade",
-    content: "The level of engineering precision they brought to our scale-up was exactly what we needed to reach the next level.",
-    avatar: "https://i.pravatar.cc/150?u=sarah"
+    name: "Scalable Solutions",
+    role: "Our Guarantee",
+    content: "Every system we architect is designed for horizontal scalability, ensuring your infrastructure grows with your success.",
+    initials: "SS"
   }
 ];
 
@@ -150,17 +205,17 @@ export default function HomePage() {
     <>
       <HeroContent />
 
-      {/* In Media Section */}
+      {/* Technology Stack Section */}
       <section className="py-20 bg-white/[0.02]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-12">
             <div className="flex-1">
-              <span className="text-accent font-black uppercase tracking-[0.5em] text-[10px] block mb-4">Coverage</span>
-              <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-6">In <span className="text-accent">Media.</span></h2>
-              <p className="text-slate-400 text-lg font-light leading-relaxed max-w-md">Our innovations and market leadership captured the attention of the world's leading tech publications.</p>
+              <span className="text-accent font-black uppercase tracking-[0.5em] text-[10px] block mb-4">Stack</span>
+              <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-6">Built with <span className="text-accent">Precision.</span></h2>
+              <p className="text-slate-400 text-lg font-light leading-relaxed max-w-md">We utilize industry-standard, high-performance technologies to build resilient digital systems.</p>
             </div>
             <div className="flex-[1.5] grid grid-cols-2 md:grid-cols-3 gap-8 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
-               {["FORBES", "WIRED", "TECHCRUNCH", "BLOOMBERG", "THE VERGE", "JOURNAL"].map((m) => (
+               {["REACT", "NODE.JS", "PYTHON", "AWS", "DOCKER", "KUBERNETES"].map((m) => (
                  <div key={m} className="h-16 flex items-center justify-center font-black text-white text-xl border border-white/5 rounded-xl hover:bg-white/5 cursor-default transition-colors">{m}</div>
                ))}
             </div>
@@ -190,25 +245,7 @@ export default function HomePage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {INDUSTRIES.map((ind, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="group relative h-[400px] rounded-[2.5rem] overflow-hidden border border-white/5 cursor-pointer"
-            >
-              <img src={ind.img} alt={ind.title} className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 opacity-30 group-hover:opacity-60" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent" />
-              <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                <div className="w-12 h-12 bg-accent rounded-xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform">
-                  <ind.icon size={20} />
-                </div>
-                <h3 className="text-2xl font-black text-white tracking-tighter">{ind.title}</h3>
-                <div className="mt-4 flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all">
-                  LEARN MORE <ArrowRight size={14} />
-                </div>
-              </div>
-            </motion.div>
+            <FlipCard key={i} industry={ind} index={i} />
           ))}
         </div>
       </Section>
@@ -260,62 +297,54 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* Featured Projects Section */}
+      {/* Strategic Approach Section */}
       <Section>
         <div className="flex justify-between items-end mb-16 px-4">
           <div>
-            <span className="text-accent font-black uppercase tracking-[0.5em] text-[10px] block mb-4">Case Studies</span>
-            <h2 className="text-5xl md:text-8xl font-black text-white tracking-tighter">Featured <span className="text-accent">Projects.</span></h2>
+            <span className="text-accent font-black uppercase tracking-[0.5em] text-[10px] block mb-4">How We Work</span>
+            <h2 className="text-5xl md:text-8xl font-black text-white tracking-tighter">Strategic <span className="text-accent">Approach.</span></h2>
           </div>
-          <Link to="/case-studies" className="hidden md:flex items-center gap-3 text-white font-bold group decoration-none mb-4">
-            View All Projects <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
+          <Link to="/services" className="hidden md:flex items-center gap-3 text-white font-bold group decoration-none mb-4">
+            Our Services <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
           </Link>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          {FEATURED_PROJECTS.map((project, i) => (
+          {STRATEGIC_APPROACH.map((item, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: i * 0.2, duration: 0.8 }}
-              className="group relative h-[600px] rounded-[3rem] overflow-hidden bg-white/5 border border-white/5"
+              className="group relative h-[400px] rounded-[3rem] overflow-hidden bg-white/5 border border-white/5 p-12 flex flex-col justify-end"
             >
-              <div className="absolute inset-0">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 grayscale group-hover:grayscale-0 opacity-40 group-hover:opacity-100"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/40 to-transparent" />
+              <div className="absolute top-12 left-12 w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center text-accent group-hover:scale-110 transition-transform">
+                <item.icon size={32} />
               </div>
-              <div className="absolute bottom-0 left-0 p-12 w-full">
+              <div className="relative z-10">
                 <span className="px-4 py-1.5 rounded-full bg-accent/20 border border-accent/30 text-accent text-[10px] font-black uppercase tracking-widest inline-block mb-6 backdrop-blur-md">
-                  {project.category}
+                  {item.category}
                 </span>
                 <h3 className="text-4xl md:text-5xl font-black text-white mb-6 group-hover:text-accent transition-colors tracking-tighter">
-                  {project.title}
+                  {item.title}
                 </h3>
                 <p className="text-slate-400 text-lg font-light leading-relaxed max-w-md group-hover:text-white transition-colors">
-                  {project.desc}
+                  {item.desc}
                 </p>
-                <Link to="/case-studies" className="mt-8 flex items-center gap-3 text-accent font-black decoration-none text-sm group-hover:gap-5 transition-all">
-                  LEARN MORE <ArrowRight size={18} />
-                </Link>
               </div>
             </motion.div>
           ))}
         </div>
       </Section>
 
-      {/* Testimonials Section */}
+      {/* Value Proposition Section */}
       <Section className="bg-white/[0.01]">
         <div className="max-w-4xl mx-auto text-center mb-20">
-          <span className="text-accent font-black uppercase tracking-[0.5em] text-[10px] block mb-4">Feedback</span>
-          <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter mb-8">What Our Customers <span className="text-accent">Say.</span></h2>
+          <span className="text-accent font-black uppercase tracking-[0.5em] text-[10px] block mb-4">Our Commitment</span>
+          <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter mb-8">What We <span className="text-accent">Deliver.</span></h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {TESTIMONIALS.map((t, i) => (
+          {VALUE_PROPOSITIONS.map((prop, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, x: i === 0 ? -30 : 30 }}
@@ -323,12 +352,14 @@ export default function HomePage() {
               className="bg-glass p-12 rounded-[3.5rem] border border-white/10 relative group"
             >
               <Quote className="text-accent-hover mb-8 w-12 h-12 opacity-50 group-hover:opacity-100 transition-opacity" />
-              <p className="text-white text-2xl font-medium leading-relaxed mb-10 italic">"{t.content}"</p>
+              <p className="text-white text-2xl font-medium leading-relaxed mb-10 italic">"{prop.content}"</p>
               <div className="flex items-center gap-5">
-                <img src={t.avatar} alt={t.name} className="w-16 h-16 rounded-full border-2 border-accent p-0.5" />
+                <div className="w-16 h-16 rounded-full border-2 border-accent flex items-center justify-center text-accent font-black text-xl bg-accent/10">
+                  {prop.initials}
+                </div>
                 <div>
-                  <div className="text-white font-black text-xl">{t.name}</div>
-                  <div className="text-slate-500 text-sm font-bold uppercase tracking-widest">{t.role}</div>
+                  <div className="text-white font-black text-xl">{prop.name}</div>
+                  <div className="text-slate-500 text-sm font-bold uppercase tracking-widest">{prop.role}</div>
                 </div>
               </div>
             </motion.div>
@@ -347,10 +378,10 @@ export default function HomePage() {
         </motion.div>
         <div className="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-2 md:grid-cols-4 gap-12 text-white">
           {[
-            { val: "150+", label: "Projects Completed" },
+            { val: "150+", label: "Successful Deployments" },
             { val: "99.9%", label: "System Uptime" },
             { val: "24/7", label: "Expert Support" },
-            { val: "20+", label: "Industry Awards" }
+            { val: "20+", label: "Tech Partners" }
           ].map((stat, i) => (
             <motion.div
               key={i}
@@ -414,7 +445,9 @@ export default function HomePage() {
           >
             <div className="absolute -inset-10 bg-accent/20 blur-[100px] rounded-full" />
             <div className="bg-glass p-8 rounded-[3rem] border border-white/10 relative z-10 shadow-2xl overflow-hidden group">
-               <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover rounded-[2rem] opacity-50 group-hover:scale-105 transition-transform duration-1000" />
+               <div className="w-full aspect-video rounded-[2rem] bg-accent/5 flex items-center justify-center group-hover:bg-accent/10 transition-colors duration-1000 border border-white/5">
+                 <Cpu className="text-accent w-24 h-24 opacity-20 group-hover:opacity-40 transition-opacity" />
+               </div>
                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent flex items-end p-10">
                  <div>
                     <div className="text-blue-400 text-xs font-black uppercase tracking-widest mb-2">Our Workflow</div>

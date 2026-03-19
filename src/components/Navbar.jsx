@@ -17,7 +17,7 @@ export function Navbar() {
     { title: "About", to: "/about" },
     { title: "Services", to: "/services" },
     { title: "Industries", to: "/industries" },
-    { title: "Case Studies", to: "/case-studies" },
+    { title: "Methodologies", to: "/case-studies" },
     { title: "Careers", to: "/careers" },
   ];
 
