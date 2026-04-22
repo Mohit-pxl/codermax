@@ -30,7 +30,7 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between bg-glass rounded-[2rem] px-8 py-2 border border-white/5 shadow-2xl relative">
         <Link to="/" className="flex items-center gap-3 group cursor-pointer no-underline">
-          <div className="w-10 h-10 bg-accent rounded-xl flex items-center justify-center font-black italic text-white group-hover:rotate-12 transition-transform shadow-lg shadow-accent/30">C</div>
+          <img src="/logo_high_res_no_bg.png" alt="Codermax Logo" className="h-10 w-auto object-contain group-hover:scale-105 transition-transform drop-shadow-md" />
           <span className="text-2xl font-black tracking-tighter text-white">CODERMAX</span>
         </Link>
 
