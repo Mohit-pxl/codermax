@@ -24,7 +24,7 @@ export function ServiceCard({ icon: Icon, title, desc, delay }) {
       >
         <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
         <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
-        <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center text-accent mb-10 group-hover:bg-accent group-hover:text-white transition-all duration-500 shadow-xl group-hover:shadow-accent/50 relative z-10">
+        <div className="w-16 h-16 shrink-0 bg-accent/10 rounded-2xl flex items-center justify-center text-accent mb-10 group-hover:bg-accent group-hover:text-white transition-all duration-500 shadow-xl group-hover:shadow-accent/50 relative z-10">
           <Icon size={32} strokeWidth={1.5} />
         </div>
         <h3 className="text-3xl font-bold mb-6 text-white group-hover:text-accent transition-colors tracking-tight relative z-10">{title}</h3>

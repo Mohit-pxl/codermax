@@ -40,7 +40,7 @@ const FlipCard = ({ industry, index }) => {
           <img src={industry.img} alt={industry.title} className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 opacity-30 group-hover:opacity-60" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent" />
           <div className="absolute inset-0 p-8 flex flex-col justify-end">
-            <div className="w-12 h-12 bg-accent rounded-xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform">
+            <div className="w-12 h-12 shrink-0 bg-accent rounded-xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform">
               <industry.icon size={20} />
             </div>
             <h3 className="text-2xl font-black text-white tracking-tighter">{industry.title}</h3>
@@ -55,7 +55,7 @@ const FlipCard = ({ industry, index }) => {
           className="absolute inset-0 backface-hidden p-8 bg-accent/10 border border-accent/20 rounded-[2.5rem] flex flex-col items-center justify-center text-center w-full h-full"
           style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
         >
-          <div className="w-16 h-16 bg-[#020617] rounded-2xl flex items-center justify-center text-accent mb-6 shadow-xl shadow-accent/20">
+          <div className="w-16 h-16 shrink-0 bg-[#020617] rounded-2xl flex items-center justify-center text-accent mb-6 shadow-xl shadow-accent/20">
             <industry.icon size={32} />
           </div>
           <h3 className="text-3xl font-black text-white mb-4 tracking-tighter">{industry.title}</h3>
@@ -318,7 +318,7 @@ export default function HomePage() {
               transition={{ delay: i * 0.2, duration: 0.8 }}
               className="group relative h-[400px] rounded-[3rem] overflow-hidden bg-white/5 border border-white/5 p-12 flex flex-col justify-end"
             >
-              <div className="absolute top-12 left-12 w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center text-accent group-hover:scale-110 transition-transform">
+              <div className="absolute top-12 left-12 w-16 h-16 shrink-0 bg-accent/10 rounded-2xl flex items-center justify-center text-accent group-hover:scale-110 transition-transform">
                 <item.icon size={32} />
               </div>
               <div className="relative z-10">
@@ -354,7 +354,7 @@ export default function HomePage() {
               <Quote className="text-accent-hover mb-8 w-12 h-12 opacity-50 group-hover:opacity-100 transition-opacity" />
               <p className="text-white text-2xl font-medium leading-relaxed mb-10 italic">"{prop.content}"</p>
               <div className="flex items-center gap-5">
-                <div className="w-16 h-16 rounded-full border-2 border-accent flex items-center justify-center text-accent font-black text-xl bg-accent/10">
+                <div className="w-16 h-16 shrink-0 rounded-full border-2 border-accent flex items-center justify-center text-accent font-black text-xl bg-accent/10">
                   {prop.initials}
                 </div>
                 <div>
@@ -425,7 +425,7 @@ export default function HomePage() {
                   viewport={{ once: true }}
                   className="flex gap-8 group"
                 >
-                  <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center text-accent group-hover:scale-110 transition-transform shadow-lg">
+                  <div className="w-16 h-16 shrink-0 rounded-2xl bg-accent/10 flex items-center justify-center text-accent group-hover:scale-110 transition-transform shadow-lg">
                     <Zap size={24} />
                   </div>
                   <div>
@@ -441,17 +441,17 @@ export default function HomePage() {
             whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true, margin: "-50px" }}
-            className="flex-1 relative"
+            className="flex-1 relative w-full mt-10 md:mt-0"
           >
             <div className="absolute -inset-10 bg-accent/20 blur-[100px] rounded-full" />
-            <div className="bg-glass p-8 rounded-[3rem] border border-white/10 relative z-10 shadow-2xl overflow-hidden group">
-               <div className="w-full aspect-video rounded-[2rem] bg-accent/5 flex items-center justify-center group-hover:bg-accent/10 transition-colors duration-1000 border border-white/5">
-                 <Cpu className="text-accent w-24 h-24 opacity-20 group-hover:opacity-40 transition-opacity" />
+            <div className="bg-glass p-6 md:p-8 rounded-[2rem] md:rounded-[3rem] border border-white/10 relative z-10 shadow-2xl overflow-hidden group">
+               <div className="w-full aspect-square md:aspect-video rounded-xl md:rounded-[2rem] bg-accent/5 flex items-center justify-center group-hover:bg-accent/10 transition-colors duration-1000 border border-white/5">
+                 <Cpu className="text-accent w-16 h-16 md:w-24 md:h-24 opacity-20 group-hover:opacity-40 transition-opacity" />
                </div>
-               <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent flex items-end p-10">
+               <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent flex items-end p-6 md:p-10">
                  <div>
-                    <div className="text-blue-400 text-xs font-black uppercase tracking-widest mb-2">Our Workflow</div>
-                    <div className="text-2xl font-black text-white">Innovation Powered by Data.</div>
+                    <div className="text-blue-400 text-[10px] md:text-xs font-black uppercase tracking-widest mb-1 md:mb-2">Our Workflow</div>
+                    <div className="text-xl md:text-2xl font-black text-white leading-tight drop-shadow-md">Innovation Powered by Data.</div>
                  </div>
                </div>
             </div>
